@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 let isLoggedIn: boolean = false;
 const API = process.env.BACKEND_URL;
 
-export function middleware(request: NextRequest) {
+export async function Middleware(request: NextRequest) {
   useEffect(() => {
     if (typeof window !== undefined && window.localStorage) {
       let accessToken = localStorage.getItem('access-token');
