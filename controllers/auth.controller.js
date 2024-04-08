@@ -65,17 +65,7 @@ const login = async (req, res) => {
       expiresIn: "90d",
     });
 
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      maxAge: 15 * 60 * 1000, // 15 minutes
-    });
-
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-    });
-
-    res.status(200).json({ message: "Login successful" });
+    res.status(200).json({ message: "Login successful", accessToken, refreshToken });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
@@ -97,13 +87,8 @@ const refreshToken = async (req, res) => {
     const accessToken = jwt.sign({ id: user._id }, secretKey, {
       expiresIn: "15m",
     });
-
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      maxAge: 15 * 60 * 1000, // 15 minutes
-    });
-
-    res.status(200).json({ message: "Access token refreshed successfully" });
+    
+    res.status(200).json({ message: "Access token refreshed successfully", accessToken });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }

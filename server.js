@@ -15,27 +15,22 @@ mongoose
   .connect(DB)
   .catch((error) => console.error("MongoDB connection error:", error));
 
-const corsOptions = {
-  origin: ["http://localhost:3000"], //(https://your-client-app.com)
-  optionsSuccessStatus: 200,
-};
 const app = express();
+const corsOptions = {
+  credentials:true,
+  origin:"http://localhost:3000"
+}
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    credentials: true,
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
+app.use(cors(corsOptions));
 
 app.use("/auth", authRoutes);
 app.use("/party", partyRoutes);
 app.use("/request", requestRoutes);
 app.use("/report", reportRoutes);
+
+app.options("*", cors(corsOptions))
 
 app.listen(PORT, () => {
   swaggerDocs(app, PORT);
