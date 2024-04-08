@@ -1,13 +1,13 @@
 import FlexDiv from "@/atoms/flex.div";
 import NotificationPanel from "@/components/notification.panel";
-import PartyComponent from "@/components/party.component";
+import RestaurantComponent from "@/components/restaurant.component";
 import Sidebar from "@/components/sidebar";
 
-export default function Party(){
+export default function Restaurants(){
     return(
         <FlexDiv>
             <Sidebar/>
-            <PartyComponent/>
+            <RestaurantComponent/>
             <NotificationPanel/>
         </FlexDiv>
     )

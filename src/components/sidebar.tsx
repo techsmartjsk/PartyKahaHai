@@ -25,22 +25,22 @@ export default function Sidebar() {
       icon: <PartyIcon />,
     },
     {
-      link: "/venues/",
+      link: "/venues",
       name: "Manage Venues",
       icon: <VenueIcon />,
     },
     {
-      link: "/users/",
+      link: "/users",
       name: "Manage Users",
       icon: <UserIcon />,
     },
     {
-      link: "/requests/",
+      link: "/restaurants",
       name: "Manage RM Requests",
       icon: <RestaurantIcon />,
     },
     {
-      link: "/reports/",
+      link: "/reports",
       name: "Manage Reports",
       icon: <ReportIcon />,
     },

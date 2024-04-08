@@ -1,13 +1,13 @@
 import FlexDiv from "@/atoms/flex.div";
 import NotificationPanel from "@/components/notification.panel";
-import PartyComponent from "@/components/party.component";
 import Sidebar from "@/components/sidebar";
+import UsersComponent from "@/components/user.component";
 
-export default function Party(){
+export default function Users(){
     return(
         <FlexDiv>
             <Sidebar/>
-            <PartyComponent/>
+            <UsersComponent/>
             <NotificationPanel/>
         </FlexDiv>
     )
