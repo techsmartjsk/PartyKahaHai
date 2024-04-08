@@ -4,13 +4,18 @@ const secretKey = process.env.JWT_SECRET_KEY;
 
 const authMiddleware = async (req, res, next) => {
   try {
-    const token = req.header("Authorization").replace("Bearer ", "");
+    console.log(req.cookies)
+    const token = req.cookies.accessToken;
+    if (!token) {
+      throw new Error("Token not found in cookies");
+    }
+
     const decoded = jwt.verify(token, secretKey);
 
     const user = await User.findOne({ _id: decoded.id });
 
     if (!user) {
-      throw new Error();
+      throw new Error("User not found");
     }
 
     req.token = token;

@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secretKey = process.env.JWT_SECRET_KEY;
 
-
 const verifyToken = (req, res, next) => {
   const accessToken = req.cookies.accessToken;
   if (!accessToken) {
@@ -18,7 +17,6 @@ const verifyToken = (req, res, next) => {
     next();
   });
 };
-
 
 const register = async (req, res) => {
   try {
@@ -115,5 +113,5 @@ module.exports = {
   register,
   login,
   refreshToken,
-  verifyToken
+  verifyToken,
 };

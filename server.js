@@ -1,5 +1,6 @@
 require("dotenv").config();
-var cors = require('cors')
+var cors = require("cors");
+const swaggerDocs = require("./swagger")
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth.router");
@@ -18,11 +19,15 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors());
 
 app.use("/auth", authRoutes);
 app.use("/party", partyRoutes);
 app.use("/request", requestRoutes);
 app.use("/report", reportRoutes);
 
-app.listen(PORT);
+app.listen(PORT,()=>{
+  swaggerDocs(app, PORT)
+});
+
+
