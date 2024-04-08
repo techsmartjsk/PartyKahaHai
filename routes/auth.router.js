@@ -126,4 +126,4 @@ router.post("/verifyToken", AuthController.verifyToken);
  *     name: accessToken
  */
 
-module.exports = router
+module.exports = router;

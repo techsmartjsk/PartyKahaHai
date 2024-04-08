@@ -107,5 +107,4 @@ router.post("/reject", authMiddleware, RequestsController.rejectRequest);
  *         description: Internal server error
  */
 
-
 module.exports = router;

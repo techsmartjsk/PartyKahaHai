@@ -8,7 +8,6 @@ router.get("/all", authMiddleware, ReportController.getReports);
 router.put("/:id", authMiddleware, ReportController.updateReportStatus);
 router.delete("/:id", authMiddleware, ReportController.deleteReport);
 
-
 /**
  * @swagger
  * tags:
@@ -176,6 +175,5 @@ router.delete("/:id", authMiddleware, ReportController.deleteReport);
  *       500:
  *         description: Internal server error
  */
-
 
 module.exports = router;

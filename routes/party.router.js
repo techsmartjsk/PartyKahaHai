@@ -10,8 +10,7 @@ router.get("/:id", authMiddleware, PartyController.getPartyById);
 router.put("/:id", authMiddleware, PartyController.updateParty);
 router.delete("/:id", authMiddleware, PartyController.deleteParty);
 
-
-/** 
+/**
  * @swagger
  * /party/all:
  *   get:
