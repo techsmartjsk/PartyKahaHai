@@ -30,6 +30,8 @@ router.post("/verifyToken", AuthController.verifyToken);
  *                 type: string
  *               password:
  *                 type: string
+ *               role:
+ *                  type: string
  *     responses:
  *       201:
  *         description: User registered successfully
