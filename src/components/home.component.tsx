@@ -2,6 +2,7 @@
 
 import RoundedRect from '@/atoms/rounded.rect';
 import SearchComponent from './search.component';
+import CardLineChart from '@/atoms/chart';
 
 export default function HomeComponent() {
   const metrics = [
@@ -41,6 +42,7 @@ export default function HomeComponent() {
           );
         })}
       </div>
+      <CardLineChart/>
     </div>
   );
 }
