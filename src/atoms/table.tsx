@@ -14,7 +14,7 @@ export default function Table({ headers, data }: TableProps) {
     <div className=''>
       <div className='flex gap-2 rounded-md bg-gray-100 px-5 py-5'>
         {headers.map((header, index) => (
-          <div key={index} className='w-[20%] text-gray-500 text-center'>
+          <div key={index} className='w-[20%] text-center text-gray-500'>
             {header.label}
           </div>
         ))}
