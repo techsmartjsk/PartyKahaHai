@@ -11,11 +11,10 @@ interface ActionButtonProps {
 export default function ActionButton({ title, onClick }: ActionButtonProps) {
   return (
     <button
-      className='w-full flex items-center text-white justify-center rounded-md bg-[#EFBE10] px-4 py-2 text-lg'
+      className='flex w-full items-center justify-center rounded-md bg-[#EFBE10] px-4 py-2 text-lg text-white'
       onClick={onClick}
     >
-      <PlusIcon/> {' '}
-      {title}
+      <PlusIcon /> {title}
     </button>
   );
 }

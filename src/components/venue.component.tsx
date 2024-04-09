@@ -86,13 +86,14 @@ export default function VenueComponent() {
           value={category}
           setValue={setCategory}
         />
-        <ActionButton title='Add Venue' onClick={()=>{}}/>
+        <ActionButton title='Add Venue' onClick={() => {}} />
       </div>
       <div className='mt-5 flex'>
         <div className='flex w-[50%] flex-col gap-5'>
-          {venues.map((venue) => {
+          {venues.map((venue, index) => {
             return (
               <VenueCard
+                key={index}
                 title={venue.title}
                 image={venue.image}
                 ratings={venue.ratings}

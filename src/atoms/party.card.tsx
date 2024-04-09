@@ -1,8 +1,8 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 interface PartyCardProps {
   title: string;
-  image: string;
+  image: StaticImageData;
   attendees: number;
   time: string;
   organizer: string;

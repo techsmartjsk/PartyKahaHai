@@ -65,13 +65,15 @@ export default function PartyComponent() {
       </div>
       <div className='mt-10 flex'>
         <div className='flex w-[50%] flex-col gap-5'>
-          {parties.map((party) => {
+          {parties.map((party, index) => {
             return (
               <PartyCard
+                key={index}
                 title={party.title}
                 attendees={party.attendees}
                 time={party.time}
                 image={party.image}
+                organizer='Jaskirat Singh'
               />
             );
           })}

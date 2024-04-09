@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { useState } from 'react';
 import SearchComponent from './search.component';
@@ -31,7 +31,7 @@ export default function UsersComponent() {
           value={category}
           setValue={setCategory}
         />
-        <ActionButton title='Add User' onClick={()=>{}}/>
+        <ActionButton title='Add User' onClick={() => {}} />
       </div>
       <div className='mt-5'></div>
     </div>
