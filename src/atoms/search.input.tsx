@@ -11,7 +11,7 @@ export default function SearchInput({ value, setValue }: SearchInputProps) {
     <div className='flex w-fit cursor-pointer items-center gap-2 rounded-md border-[1px] border-gray-100 px-6 py-2'>
       <input
         type='text'
-        className='w-[250px]'
+        className='w-[180px]'
         placeholder='Search'
         value={value}
         onChange={(e) => setValue(e.target.value)}
