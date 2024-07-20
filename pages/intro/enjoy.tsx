@@ -2,9 +2,7 @@ import { View, Image, Text } from "react-native"
 import { Button } from 'react-native-elements';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 
-export default function Enjoy(){
-    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
+export default function Enjoy({ navigation }){
     const handlePress = () => {
         navigation.navigate('Auth');
     }

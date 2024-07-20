@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './home';
 import Requests from './requests';
 import Venues from './venues';
 import PartyIcon from '../../atoms/icons/partyIcon';
@@ -11,6 +10,8 @@ import { Text } from 'react-native';
 import CustomTabBar from '../../atoms/tabs/customTabBar';
 import Explore from './explore';
 import Host from './host';
+import Parties from './parties';
+import Profile from './profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +24,7 @@ const CustomTabBarLabel = ({ label, color }: CustomTabBarLabelProps) => {
   return <Text style={{ color }}>{label}</Text>;
 };
 
-export default function RoutesHome() {
+export default function RoutesHome({ navigation }: { navigation: any }) {
   return (
     <Tab.Navigator
       tabBar={(props) => <CustomTabBar {...props} />}
@@ -59,11 +60,12 @@ export default function RoutesHome() {
         headerShown: false,
       })}
     >
-      <Tab.Screen name="Parties" component={Home} />
+      <Tab.Screen name="Parties" component={Parties} />
       <Tab.Screen name="Requests" component={Requests} />
-      <Tab.Screen name="Explore" component={Explore} options={{ tabBarLabel: '' }} />
+      <Tab.Screen name="Explore" component={Explore} />
       <Tab.Screen name="Venues" component={Venues} />
       <Tab.Screen name="Host" component={Host} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }

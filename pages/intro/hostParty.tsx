@@ -2,9 +2,7 @@ import { View, Image, Text } from "react-native"
 import { Button } from 'react-native-elements';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 
-export default function HostParty(){
-    const navigation = useNavigation<NavigationProp<IntroStackParamList>>();
-
+export default function HostParty({ navigation }){
     const handlePress = () => {
         navigation.navigate('Indulge');
     }

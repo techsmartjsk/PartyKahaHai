@@ -13,7 +13,7 @@ export default function Intro() {
     console.log("Intro Screen!");
   },[])
   return (
-    <NavigationContainer independent={true}>
+    <NavigationContainer>
       <IntroStack.Navigator initialRouteName="HostParty" screenOptions={{headerShown: false}}>
         <IntroStack.Screen name="HostParty" component={HostParty} />
         <IntroStack.Screen name="Indulge" component={Indulge} />

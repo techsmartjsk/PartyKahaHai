@@ -5,6 +5,7 @@ import Auth from './pages/auth/routesAuth';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RoutesHome from './pages/app/routesHome';
+import Profile from './pages/app/profile';
 
 export default function App() {
   const RootStack = createStackNavigator<RootStackParamList>();

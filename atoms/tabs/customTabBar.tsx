@@ -28,13 +28,6 @@ const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => 
             }
           };
 
-          const onLongPress = () => {
-            navigation.emit({
-              type: 'tabLongPress',
-              target: route.key,
-            });
-          };
-
           let IconComponent;
 
           if (route.name === 'Parties') {
@@ -47,6 +40,8 @@ const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => 
             IconComponent = HostIcon;
           } else if (route.name === 'Explore') {
             IconComponent = ExploreIcon;
+          } else if (route.name === 'Profile') {
+            return 
           }
 
           return (
@@ -57,7 +52,6 @@ const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => 
               accessibilityLabel={options.tabBarAccessibilityLabel}
               testID={options.tabBarTestID}
               onPress={onPress}
-              onLongPress={onLongPress}
               style={[styles.tabButton, isFocused && styles.activeButtonWrapper]}
             >
               <View style={[styles.tabButtonContent, isFocused && styles.activeButtonContent]}>

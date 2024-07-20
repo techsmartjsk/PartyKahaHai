@@ -1,13 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Ensure you have expo/vector-icons installed
 import GPSIcon from '../../atoms/icons/gpsIcon';
 import ArrowDownIcon from '../../atoms/icons/arrowDownIcon';
 import NotifyIcon from '../../atoms/icons/notifyIcon';
-import { useNavigation } from '@react-navigation/native';
 
-const Header = ({ iconColor, titleTextColor, subtitleTextColor, notifyIconColor }) => {
-    const navigation = useNavigation<RootStackParamList>()
+const Header = ({ iconColor, titleTextColor, subtitleTextColor, notifyIconColor, navigation }) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity style={styles.location} className='flex flex-row gap-1'>
@@ -22,7 +19,7 @@ const Header = ({ iconColor, titleTextColor, subtitleTextColor, notifyIconColor 
         <TouchableOpacity style={styles.iconButton}>
           <NotifyIcon color={notifyIconColor}/>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('Profile')}>
           <Image source={require('../../assets/images/profileImage.png')} style={styles.profileImage} />
         </TouchableOpacity>
       </View>
