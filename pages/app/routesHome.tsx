@@ -2,16 +2,17 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Requests from './requests';
 import Venues from './venues';
-import PartyIcon from '../../atoms/icons/partyIcon';
-import RequestIcon from '../../atoms/icons/requestIcon';
-import VenueIcon from '../../atoms/icons/venueIcon';
-import HostIcon from '../../atoms/icons/hostIcon';
 import { Text } from 'react-native';
 import CustomTabBar from '../../atoms/tabs/customTabBar';
 import Explore from './explore';
 import Host from './host';
 import Parties from './parties';
 import Profile from './profile';
+import HostIcon from '../../assets/icons/host.svg';
+import PartyIcon from '../../assets/icons/parties.svg';
+import RequestIcon from '../../assets/icons/requests.svg';
+import VenueIcon from '../../assets/icons/venues.svg';
+import Icon from '../../atoms/icons/icon';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,13 +32,21 @@ export default function RoutesHome({ navigation }: { navigation: any }) {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }: { color: string; size: number }) => {
           if (route.name === 'Parties') {
-            return <PartyIcon color={color} />;
+            return <Icon>
+              <PartyIcon color={color} />
+            </Icon>;
           } else if (route.name === 'Requests') {
-            return <RequestIcon color={color} />;
+            return <Icon>
+              <RequestIcon color={color} />
+            </Icon>;
           } else if (route.name === 'Venues') {
-            return <VenueIcon color={color} />;
+            return <Icon>
+              <VenueIcon color={color} />
+            </Icon>;
           } else if (route.name === 'Host') {
-            return <HostIcon color={color} />;
+            return <Icon>
+              <HostIcon color={color} />
+            </Icon>;
           }
         },
         tabBarLabel: ({ color }: { color: string }) => {

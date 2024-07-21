@@ -1,13 +1,11 @@
 import { View, Image, Text } from "react-native"
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import HostParty from '../../assets/images/host-a-party.svg';
 
 export default function SignIn(){
-    const navigation = useNavigation<NavigationProp<AuthStackParamList>>();
-
     return(
         <View>
             <View>
-                <Image source={require('../../assets/images/host-a-party.png')} resizeMode="stretch"></Image>
+                <HostParty/>
             </View>
             <View>
                <Text>SignIn</Text>

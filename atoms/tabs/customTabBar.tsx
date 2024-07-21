@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import PartyIcon from '../../atoms/icons/partyIcon';
-import RequestIcon from '../../atoms/icons/requestIcon';
-import VenueIcon from '../../atoms/icons/venueIcon';
-import HostIcon from '../../atoms/icons/hostIcon';
-import ExploreIcon from '../icons/exploreIcon';
+import PartyIcon from '../../assets/icons/parties.svg';
+import RequestIcon from '../../assets/icons/requests.svg';
+import VenueIcon from '../../assets/icons/venues.svg';
+import HostIcon from '../../assets/icons/host.svg';
+import ExploreIcon from '../../assets/icons/explore.svg';
+import Icon from '../icons/icon';
 
 const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   return (
@@ -55,7 +56,9 @@ const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => 
               style={[styles.tabButton, isFocused && styles.activeButtonWrapper]}
             >
               <View style={[styles.tabButtonContent, isFocused && styles.activeButtonContent]}>
-                <IconComponent color={isFocused ? 'white' : 'black'} size={24} />
+                <Icon>
+                  <IconComponent color={isFocused ? 'white' : 'black'} size={24} />
+                </Icon>
                 <Text style={{ color: isFocused ? 'white' : 'black', fontSize: 12 }}>{route.name}</Text>
               </View>
             </TouchableOpacity>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import CrossIcon from '../../atoms/icons/crossIcon';
-import CheckIcon from '../../atoms/icons/checkIcon';
+import Cross from '../../assets/icons/cross-icon.svg';
+import Check from '../../assets/icons/check-icon.svg';
+import Icon from '../../atoms/icons/icon';
 
 const RequestCard = () => {
   return (
@@ -16,8 +16,16 @@ const RequestCard = () => {
         </View>
       </View>
       <View className='flex flex-row gap-2 mt-2'>
-        <Button title=" Accept" buttonStyle={styles.acceptButton} titleStyle={styles.acceptButtonText} iconPosition='left' icon={<CheckIcon color='white'/>}></Button>
-        <Button title=" Decline" titleStyle={styles.rejectButtonText} iconPosition='left' icon={<CrossIcon color='#AD00DF' />}></Button>
+        <Button title=" Accept" buttonStyle={styles.acceptButton} titleStyle={styles.acceptButtonText} iconPosition='left' icon={
+          <Icon>
+            <Check color="white"/>
+          </Icon>
+        }></Button>
+        <Button title=" Decline" titleStyle={styles.rejectButtonText} iconPosition='left' icon={
+        <Icon>
+          <Cross color="#AD00DF"/>
+        </Icon>
+      }></Button>
       </View>
     </View>
   );

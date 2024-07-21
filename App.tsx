@@ -48,7 +48,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        {!onboarding ? (
+        {onboarding ? (
           <RootStack.Screen name="Intro" component={Intro} />
         ) : !loggedInUser ? (
           <RootStack.Screen name="Home" component={RoutesHome} />
