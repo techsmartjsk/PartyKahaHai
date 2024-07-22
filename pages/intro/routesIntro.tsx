@@ -9,12 +9,10 @@ const IntroStack = createStackNavigator<IntroStackParamList>()
 
 export default function Intro() {
   return (
-    <NavigationContainer independent={true}>
-      <IntroStack.Navigator initialRouteName="HostParty" screenOptions={{headerShown: false}}>
+    <IntroStack.Navigator initialRouteName="HostParty" screenOptions={{headerShown: false}}>
         <IntroStack.Screen name="HostParty" component={HostParty} />
         <IntroStack.Screen name="Indulge" component={Indulge} />
         <IntroStack.Screen name="Enjoy" component={Enjoy} />
-      </IntroStack.Navigator>
-    </NavigationContainer>
+    </IntroStack.Navigator>
   );
 }

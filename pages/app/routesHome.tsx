@@ -25,7 +25,7 @@ const CustomTabBarLabel = ({ label, color }: CustomTabBarLabelProps) => {
   return <Text style={{ color }}>{label}</Text>;
 };
 
-export default function RoutesHome({ navigation }: { navigation: any }) {
+export default function RoutesHome({ navigation }) {
   return (
     <Tab.Navigator
       tabBar={(props) => <CustomTabBar {...props} />}

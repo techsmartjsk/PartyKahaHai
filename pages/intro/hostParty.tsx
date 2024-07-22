@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
-import HostPartyImage from '../../assets/images/host-a-party.svg';
 import Icon from '../../atoms/icons/icon';
 import ArrowRight from '../../assets/icons/arrow-right.svg';
+
 export default function HostParty({ navigation }) {
     const handlePress = () => {
         navigation.navigate('Indulge');
@@ -11,12 +11,10 @@ export default function HostParty({ navigation }) {
 
     return (
         <View className="w-full bg-white h-full">
-            <View className="w-full">
-                <HostPartyImage/>
-                <View className='absolute top-[100px] flex items-center justify-center w-full'>
-                    <Text className='text-white font-bold text-[24px]'>Host a party</Text>
-                    <Text className='text-white text-[16px] mt-4'>Host your public or private party</Text>
-                </View>
+            <Image source={require('../../assets/images/host-a-party.png')} className='w-[400px] h-[700px]'></Image>
+            <View className='absolute top-[100px] flex items-center justify-center w-full'>
+                <Text className='text-white font-bold text-[24px]'>Host a party</Text>
+                <Text className='text-white text-[16px] mt-4'>Host your public or private party</Text>
             </View>
             <View className='flex flex-row items-center justify-center my-5 gap-x-2'>
                 <View className='w-[44px] bg-[#333333] h-[4px] rounded-lg'></View>

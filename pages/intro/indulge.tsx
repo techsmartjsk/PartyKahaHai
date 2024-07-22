@@ -11,7 +11,7 @@ export default function Indulge({ navigation }){
     return(
         <View>
             <View className="bg-[#AD00DF]">
-                <IndulgeImage/>
+                <IndulgeImage width='400' height="700"/>
                 <View className='absolute top-[100px] flex items-center justify-center w-full'>
                     <Text className='text-white font-bold text-[24px]'>Indulge</Text>
                     <Text className='text-white text-[16px] mt-4'>Connect with like minded people</Text>

@@ -6,13 +6,13 @@ import Login from '../../assets/icons/login.svg';
 
 export default function Enjoy({ navigation }){
     const handlePress = () => {
-        navigation.navigate('SignIn');
+        navigation.navigate('Auth')
     }
 
     return(
         <View>
             <View className="bg-[#AD00DF]">
-                <EnjoyImage width='100%'/>
+                <EnjoyImage width='400' height="700"/>
                 <View className='absolute top-[100px] flex items-center justify-center w-full'>
                     <Text className='text-white font-bold text-[24px]'>Enjoy</Text>
                     <Text className='text-white text-[16px] mt-4'>Enjoy your day at top class Venues</Text>

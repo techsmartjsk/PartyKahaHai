@@ -48,13 +48,16 @@ export default function App() {
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        {onboarding ? (
+      <RootStack.Screen name="Intro" component={Intro} />
+      <RootStack.Screen name="Home" component={RoutesHome} />
+      <RootStack.Screen name="Auth" component={Auth} />
+        {/* {onboarding ? (
           <RootStack.Screen name="Intro" component={Intro} />
-        ) : !loggedInUser ? (
+        ) : loggedInUser ? (
           <RootStack.Screen name="Home" component={RoutesHome} />
         ) : (
           <RootStack.Screen name="Auth" component={Auth} />
-        )}
+        )} */}
       </RootStack.Navigator>
     </NavigationContainer>
   );
