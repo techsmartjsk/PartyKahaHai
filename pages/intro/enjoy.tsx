@@ -1,41 +1,63 @@
-import { View, Image, Text } from "react-native"
+import React from 'react';
+import { View, Image, Dimensions, StyleSheet } from "react-native";
 import { Button } from 'react-native-elements';
 import Icon from '../../atoms/icons/icon';
-import EnjoyImage from '../../assets/images/enjoy.svg';
 import Login from '../../assets/icons/login.svg';
+import { styled } from 'nativewind';
+
+const EnjoyImage = require('../../assets/images/enjoy.png');
+
+const StyledView = styled(View);
+const StyledImage = styled(Image);
 
 export default function Enjoy({ navigation }){
     const handlePress = () => {
-        navigation.navigate('Auth')
+        navigation.navigate('Auth');
     }
 
+    const { width, height } = Dimensions.get("window");
+
     return(
-        <View>
-            <View className="bg-[#AD00DF]">
-                <EnjoyImage width='400' height="700"/>
-                <View className='absolute top-[100px] flex items-center justify-center w-full'>
-                    <Text className='text-white font-bold text-[24px]'>Enjoy</Text>
-                    <Text className='text-white text-[16px] mt-4'>Enjoy your day at top class Venues</Text>
-                </View>
-            </View>
-            <View className='flex flex-row items-center justify-center my-5 gap-x-2'>
-                <View className='w-[4px] bg-gray-500 h-[4px] rounded-full'></View>
-                <View className='w-[4px] bg-gray-500 h-[4px] rounded-full'></View>
-                <View className='w-[44px] bg-[#333333] h-[4px] rounded-lg'></View>
-            </View>
-            <View className="mt-5 w-full">
+        <StyledView className="flex-1 bg-white">
+            <StyledView style={{ width: width, height: height * 0.8 }}>
+                <StyledImage
+                    source={EnjoyImage}
+                    style= {{flex:1 , width: undefined, height: undefined}} 
+                    resizeMode="cover"
+                />
+            </StyledView>
+            <StyledView className="flex flex-row items-center justify-center my-5 gap-x-2">
+                <StyledView className="w-[4px] bg-gray-500 h-[4px] rounded-full"></StyledView>
+                <StyledView className="w-[4px] bg-gray-500 h-[4px] rounded-full"></StyledView>
+                <StyledView className="w-[44px] bg-[#333333] h-[4px] rounded-lg"></StyledView>
+            </StyledView>
+            <StyledView className="mt-5 w-full flex items-center">
                 <Button 
                     title=" SignIn" 
                     onPress={handlePress} 
-                    buttonStyle={{ backgroundColor: '#EFBE10',  width: 150, alignSelf: 'center', paddingVertical: 14, borderRadius: 10 }} 
-                    titleStyle={{ color: 'white', fontWeight: 'semibold' }} 
+                    buttonStyle={styles.buttonStyle} 
+                    titleStyle={styles.titleStyle} 
                     icon={
                         <Icon>
                             <Login color='white' />
                         </Icon>
                     }
                 />
-            </View>
-        </View>
+            </StyledView>
+        </StyledView>
     )
 }
+
+const styles = StyleSheet.create({
+    buttonStyle: {
+        backgroundColor: '#EFBE10',
+        width: 150,
+        paddingVertical: 14,
+        borderRadius: 10,
+    },
+    titleStyle: {
+        color: 'white',
+        fontWeight: '600',
+        fontFamily: 'Ubuntu_400Regular'
+    },
+});

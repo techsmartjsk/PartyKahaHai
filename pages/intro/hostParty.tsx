@@ -1,39 +1,85 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { View, Image, Dimensions, StyleSheet } from "react-native";
 import { Button } from 'react-native-elements';
 import Icon from '../../atoms/icons/icon';
 import ArrowRight from '../../assets/icons/arrow-right.svg';
+import { styled } from 'nativewind';
+import {
+    useFonts,
+    Ubuntu_300Light,
+    Ubuntu_300Light_Italic,
+    Ubuntu_400Regular,
+    Ubuntu_400Regular_Italic,
+    Ubuntu_500Medium,
+    Ubuntu_500Medium_Italic,
+    Ubuntu_700Bold,
+    Ubuntu_700Bold_Italic,
+  } from '@expo-google-fonts/ubuntu';
 
-export default function HostParty({ navigation }) {
+const HostPartyImage = require('../../assets/images/host-a-party.png');
+
+const StyledView = styled(View);
+const StyledImage = styled(Image);
+
+export default function HostParty({ navigation }){
+    let [fontsLoaded] = useFonts({
+        Ubuntu_300Light,
+        Ubuntu_300Light_Italic,
+        Ubuntu_400Regular,
+        Ubuntu_400Regular_Italic,
+        Ubuntu_500Medium,
+        Ubuntu_500Medium_Italic,
+        Ubuntu_700Bold,
+        Ubuntu_700Bold_Italic,
+      });
+
     const handlePress = () => {
         navigation.navigate('Indulge');
     }
 
-    return (
-        <View className="w-full bg-white h-full">
-            <Image source={require('../../assets/images/host-a-party.png')} className='w-[400px] h-[700px]'></Image>
-            <View className='absolute top-[100px] flex items-center justify-center w-full'>
-                <Text className='text-white font-bold text-[24px]'>Host a party</Text>
-                <Text className='text-white text-[16px] mt-4'>Host your public or private party</Text>
-            </View>
-            <View className='flex flex-row items-center justify-center my-5 gap-x-2'>
-                <View className='w-[44px] bg-[#333333] h-[4px] rounded-lg'></View>
-                <View className='w-[4px] bg-gray-500 h-[4px] rounded-full'></View>
-                <View className='w-[4px] bg-gray-500 h-[4px] rounded-full'></View>
-            </View>
-            <View className="mt-5 w-full">
+    const { width, height } = Dimensions.get("window");
+
+    return(
+        <StyledView className="flex-1 bg-white">
+            <StyledView style={{ width: width, height: height * 0.8 }}>
+                <StyledImage
+                    source={HostPartyImage}
+                    style= {{flex:1 , width: undefined, height: undefined}} 
+                    resizeMode="cover"
+                />
+            </StyledView>
+            <StyledView className="flex flex-row items-center justify-center my-5 gap-x-2">
+                <StyledView className="w-[44px] bg-[#333333] h-[4px] rounded-lg"></StyledView>
+                <StyledView className="w-[4px] bg-gray-500 h-[4px] rounded-full"></StyledView>
+                <StyledView className="w-[4px] bg-gray-500 h-[4px] rounded-full"></StyledView>
+            </StyledView>
+            <StyledView className="mt-5 w-full flex items-center">
                 <Button 
                     title=" Next" 
                     onPress={handlePress} 
-                    buttonStyle={{ backgroundColor: '#EFBE10',  width: 150, alignSelf: 'center', paddingVertical: 14, borderRadius: 10 }} 
-                    titleStyle={{ color: 'white', fontWeight: 'semibold' }} 
+                    buttonStyle={styles.buttonStyle} 
+                    titleStyle={styles.titleStyle} 
                     icon={
                         <Icon>
                             <ArrowRight color='white' />
                         </Icon>
                     }
                 />
-            </View>
-        </View>
-    );
+            </StyledView>
+        </StyledView>
+    )
 }
+
+const styles = StyleSheet.create({
+    buttonStyle: {
+        backgroundColor: '#EFBE10',
+        width: 150,
+        paddingVertical: 14,
+        borderRadius: 10,
+    },
+    titleStyle: {
+        color: 'white',
+        fontWeight: '600',
+        fontFamily: 'Ubuntu_400Regular'
+    },
+});

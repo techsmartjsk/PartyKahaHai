@@ -68,6 +68,7 @@ export default function RoutesHome({ navigation }) {
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
       })}
+      initialRouteName='Explore'
     >
       <Tab.Screen name="Parties" component={Parties} />
       <Tab.Screen name="Requests" component={Requests} />

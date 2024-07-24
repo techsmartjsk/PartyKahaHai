@@ -6,8 +6,8 @@ const PartyCard = () => {
     <View style={styles.card}>
       <Image source={require('../../assets/images/partyImage.png')} style={styles.image} />
       <View className='px-4 py-6'>
-        <Text style={styles.title}>Party Title</Text>
-        <Text style={styles.description}>This is a description of the party. Join us for a night of fun and excitement!</Text>
+        <Text style={styles.title} className='font-ubuntuBold'>Party Title</Text>
+        <Text style={styles.description} className='font-ubuntu'>This is a description of the party. Join us for a night of fun and excitement!</Text>
       </View>
     </View>
   );

@@ -59,7 +59,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => 
                 <Icon>
                   <IconComponent color={isFocused ? 'white' : 'black'} size={24} />
                 </Icon>
-                <Text style={{ color: isFocused ? 'white' : 'black', fontSize: 12 }}>{route.name}</Text>
+                <Text className='font-ubuntu' style={{ color: isFocused ? 'white' : 'black', fontSize: 12, fontFamily: 'Ubuntu400_Regular' }}>{route.name}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     bottom: 20,
     zIndex: 1,
-    paddingTop: 20,
+    paddingTop: 24,
     paddingHorizontal: 2,
     backgroundColor:'#F2F2F2',
     borderRadius: 450,

@@ -7,7 +7,12 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        ubuntu: ["Ubuntu_400Regular"],
+        ubuntuBold: ["Ubuntu_500Medium"]
+      },
+    },
   },
   plugins: [],
 }

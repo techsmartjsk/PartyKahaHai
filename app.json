@@ -22,6 +22,19 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "42d979bd-d8de-4aef-9169-6cd0c79964e5"
+      }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["node_modules/@expo-google-fonts/ubuntu/Ubuntu_400Regular.ttf"]
+        }
+      ]
+    ]
   }
 }

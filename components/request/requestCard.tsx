@@ -11,8 +11,8 @@ const RequestCard = () => {
       <View className='flex flex-row gap-5 items-center'>
         <Image source={require('../../assets/images/profileImage.png')} style={styles.profileImage} />
         <View>
-            <Text className='font-bold text-md'>Rahul Jain</Text>
-            <Text>Software Engineer</Text>
+            <Text className='font-bold text-md font-ubuntuBold'>Rahul Jain</Text>
+            <Text className='font-ubuntu'>Software Engineer</Text>
         </View>
       </View>
       <View className='flex flex-row gap-2 mt-2'>
@@ -56,12 +56,14 @@ const styles = StyleSheet.create({
   },
   acceptButtonText:{
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: 'Ubuntu500_Medium'
   },
   rejectButtonText:{
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#AD00DF'
+    color: '#AD00DF',
+    fontFamily: 'Ubuntu500_Medium'
   }
 });
 

@@ -5,25 +5,25 @@ import Gps from "../../assets/icons/gps.svg";
 import ArrowDown from "../../assets/icons/arrow-down.svg";
 import Notify from "../../assets/icons/notify-icon.svg";
 
-const Header = ({ iconColor, titleTextColor, subtitleTextColor, notifyIconColor, navigation }) => {
+const Header = ({ iconColor, titleTextColor, subtitleTextColor, notifyIconColor, navigation, className }) => {
   return (
-    <View style={styles.header}>
+    <View style={styles.header} className={className}>
       <TouchableOpacity style={styles.location} className='flex flex-row gap-1'>
         <Icon>
           <Gps color={iconColor}/>
         </Icon>
         <View className='flex flex-col items-left justify-center'>
-            <Text style={styles.locationText} className={`text-[${titleTextColor}]`}>New Delhi</Text>
-            <Text className={`text-gray-500 w-[200px] text-[${subtitleTextColor}]`}>123, ABC Colony...</Text>
+            <Text style={styles.locationText} className={`font-ubuntuBold text-${titleTextColor}`}>New Delhi</Text>
+            <Text className={`font-ubuntu w-[170px] text-${subtitleTextColor}`}>123, ABC Colony...</Text>
         </View>
         <Icon>
           <ArrowDown color={iconColor}/>
         </Icon>
       </TouchableOpacity>
-      <View style={styles.icons}>
+      <View style={styles.icons} className='flex flex-row space-x-8'>
         <TouchableOpacity style={styles.iconButton}>
           <Icon>
-            <Notify color={iconColor}/>
+            <Notify color={notifyIconColor} width={24} height={24}/>
           </Icon>
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('Profile')}>
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   profileImage: {
-    width: 30,
-    height: 30,
+    width: 32,
+    height: 32,
     borderRadius: 15,
   },
 });

@@ -21,15 +21,15 @@ export default function Profile({ navigation }){
 
     return(
         <SafeAreaView className="bg-white h-full">
-            <Header navigation={navigation} iconColor='#AD00DF' titleTextColor='black' subtitleTextColor='black' notifyIconColor='black'/>
-            <Text className="text-[20px] mt-5 font-bold mx-5 mb-5">Profile</Text>
+            <Header navigation={navigation} iconColor='#AD00DF' titleTextColor='black' subtitleTextColor='black' notifyIconColor='black' className=''/>
+            <Text className="text-[20px] mt-5 font-bold mx-5 mb-5 font-ubuntuBold">Profile</Text>
 
             <View className="mx-5 rounded-md bg-[#AD00DF] px-4 py-4">
                 <View className="flex items-center flex-row gap-2">
                     <Image source={require('../../assets/images/profileImage.png')} className="w-[60px] h-[60px]"/>
                     <View className="flex flex-col flex-1">
-                        <Text className="text-white text-lg">Saumya Chaudhary</Text>
-                        <Text className="text-white text-md">@Saumya</Text>
+                        <Text className="text-white text-lg font-ubuntu">Saumya Chaudhary</Text>
+                        <Text className="text-white text-md font-ubuntu">@Saumya</Text>
                     </View>
                     <View className="flex justify-end">
                         <Icon>
@@ -49,8 +49,8 @@ export default function Profile({ navigation }){
                         </View>
                     </View>
                     <View className="flex flex-col gap-1 flex-1">
-                        <Text className="text-[14px] font-bold">Personal Info</Text>
-                        <Text className="text-[12px] text-[#828282]">View & make changes to your account</Text>
+                        <Text className="text-[14px] font-bold font-ubuntuBold">Personal Info</Text>
+                        <Text className="text-[12px] text-[#828282] font-ubuntu">View & make changes to your account</Text>
                     </View>
                     <View className="flex justify-end">
                         <Icon>
@@ -68,8 +68,8 @@ export default function Profile({ navigation }){
                         </View>
                     </View>
                     <View className="flex flex-col gap-1 flex-1">
-                        <Text className="text-[14px] font-bold">Addresses</Text>
-                        <Text className="text-[12px] text-[#828282]">Share, edit & add new address</Text>
+                        <Text className="text-[14px] font-bold font-ubuntuBold">Addresses</Text>
+                        <Text className="text-[12px] text-[#828282] font-ubuntu">Share, edit & add new address</Text>
                     </View>
                     <View className="flex justify-end">
                         <Icon>
@@ -87,8 +87,8 @@ export default function Profile({ navigation }){
                         </View>
                     </View>
                     <View className="flex flex-col gap-1 flex-1">
-                        <Text className="text-[14px] font-bold">Face ID / Touch ID</Text>
-                        <Text className="text-[12px] text-[#828282]">Manage your device security</Text>
+                        <Text className="text-[14px] font-bold font-ubuntuBold">Face ID / Touch ID</Text>
+                        <Text className="text-[12px] text-[#828282] font-ubuntu">Manage your device security</Text>
                     </View>
                     <View className="flex justify-end">
                         <Switch
@@ -109,8 +109,8 @@ export default function Profile({ navigation }){
                         </View>
                     </View>
                     <View className="flex flex-col gap-1 flex-1">
-                        <Text className="text-[14px] font-bold">Account Verification</Text>
-                        <Text className="text-[12px] text-[#828282]">Account authenticity verification</Text>
+                        <Text className="text-[14px] font-bold font-ubuntuBold">Account Verification</Text>
+                        <Text className="text-[12px] text-[#828282] font-ubuntu">Account authenticity verification</Text>
                     </View>
                     <View className="flex justify-end">
                         <Icon>
@@ -128,8 +128,8 @@ export default function Profile({ navigation }){
                         </View>
                     </View>
                     <View className="flex flex-col gap-1 flex-1">
-                        <Text className="text-[14px] font-bold">Logout</Text>
-                        <Text className="text-[12px] text-[#828282]">Logout from your account</Text>
+                        <Text className="text-[14px] font-bold font-ubuntuBold">Logout</Text>
+                        <Text className="text-[12px] text-[#828282] font-ubuntu">Logout from your account</Text>
                     </View>
                     <View className="flex justify-end">
                         <Icon>
@@ -149,7 +149,7 @@ export default function Profile({ navigation }){
                         </View>
                     </View>
                     <View className="flex flex-col gap-1 flex-1">
-                        <Text className="text-[16px]">Help & Support</Text>
+                        <Text className="text-[16px] font-ubuntuBold">Help & Support</Text>
                     </View>
                     <View className="flex justify-end">
                         <Icon>
@@ -167,7 +167,7 @@ export default function Profile({ navigation }){
                         </View>
                     </View>
                     <View className="flex flex-col gap-1 flex-1">
-                        <Text className="text-[16px]">About App</Text>
+                        <Text className="text-[16px] font-ubuntuBold">About App</Text>
                     </View>
                     <View className="flex justify-end">
                         <Icon><NavArrowRight color="#AD00DF"/></Icon>

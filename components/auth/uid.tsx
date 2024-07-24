@@ -9,23 +9,23 @@ export default function UID({ navigation }){
     }
     return(
         <View className="flex flex-col gap-y-4 mx-5 mt-5">
-            <Text className="font-bold text-[18px]">Enter mobile number</Text>
+            <Text className="font-bold text-[18px] font-ubuntu">Enter mobile number</Text>
             <TextInput
             placeholder="Enter your UID registered mobile number"
-            className="border-[1px] p-4 border-[#E6DFDF] rounded-md"
+            className="border-[1px] p-4 border-[#E6DFDF] rounded-md font-ubuntu"
             />
             <Button 
                     title=" SignIn" 
                     onPress={handlePress} 
                     buttonStyle={{ backgroundColor: '#EFBE10',  width: '100%', alignSelf: 'center', paddingVertical: 14, borderRadius: 10 }} 
-                    titleStyle={{ color: 'white', fontWeight: 'semibold' }} 
+                    titleStyle={{ color: 'white', fontWeight: 'semibold', fontFamily: 'Ubuntu_400Regular'  }} 
                     icon={
                         <Icon>
                             <Login color='white' />
                         </Icon>
                     }
                 />
-            <Text className="text-[12px] mt-5 text-[#BDBDBD] text-center">OTP will be sent to mobile number for verification</Text>
+            <Text className="text-[12px] mt-5 text-[#BDBDBD] text-center font-ubuntu">OTP will be sent to mobile number for verification</Text>
         </View>
     )
 }
