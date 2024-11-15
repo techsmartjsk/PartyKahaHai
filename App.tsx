@@ -16,6 +16,7 @@ import {
   Ubuntu_700Bold,
   Ubuntu_700Bold_Italic,
 } from '@expo-google-fonts/ubuntu';
+import Chat from './pages/chat/routesChat';
 
 export default function App() {
   const RootStack = createStackNavigator<RootStackParamList>();
@@ -58,28 +59,22 @@ export default function App() {
   useEffect(() => {
     checkOnboarding();
     checkLoggedInUser();
-    console.log(fontsLoaded);
   }, []);
 
   if (onboarding === null || !fontsLoaded) {
     return null;
   }
 
-
   return (
     <NavigationContainer>
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
-      <RootStack.Screen name="Intro" component={Intro} />
-      <RootStack.Screen name="Home" component={RoutesHome} />
-      <RootStack.Screen name="Auth" component={Auth} />
-        {/* {onboarding ? (
-          <RootStack.Screen name="Intro" component={Intro} />
-        ) : loggedInUser ? (
-          <RootStack.Screen name="Home" component={RoutesHome} />
-        ) : (
-          <RootStack.Screen name="Auth" component={Auth} />
-        )} */}
+        <RootStack.Screen name="Intro" component={Intro} />
+        <RootStack.Screen name="Home" component={RoutesHome} />
+        <RootStack.Screen name="Auth" component={Auth} />
+        <RootStack.Screen name="Chat" component={Chat} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
 }
+
+
