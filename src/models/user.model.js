@@ -1,8 +1,7 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  sub: { type: String, required: true, unique: true },
   verified: { type: Boolean, default: false },
   blocked: { type: Boolean, default: false },
   partyType: { type: String, required: false },
@@ -23,6 +22,4 @@ const userSchema = new mongoose.Schema({
   requests: [{ type: mongoose.Schema.Types.ObjectId, ref: "Request" }],
 });
 
-const User = mongoose.model("User", userSchema);
-
-module.exports = User;
+export const User = mongoose.model("User", userSchema);

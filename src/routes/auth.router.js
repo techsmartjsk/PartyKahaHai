@@ -1,49 +1,24 @@
-const express = require("express");
-const router = express.Router();
-const AuthController = require("../controllers/auth.controller");
+import express from "express";
+import AuthController from "../controllers/auth.controller"
 
-router.post("/register", AuthController.register);
-router.post("/login", AuthController.login);
-router.post("/refreshToken", AuthController.refreshToken);
-router.post("/verifyToken", AuthController.verifyToken);
+const router = express.Router();
+
+router.post("/authenticate", AuthController.sendCode);
+router.post("/authenticate/verify", AuthController.verifyCode);
+router.get("/refreshToken", AuthController.refreshToken);
+router.get("/verifyToken", AuthController.verifyToken);
+
+export const AuthRouter = { router}
+
 /**
  * @swagger
  * tags:
  *   name: Auth
  *   description: Authentication APIs
  */
-
 /**
  * @swagger
- * /auth/register:
- *   post:
- *     summary: Register a new user
- *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *               role:
- *                  type: string
- *     responses:
- *       201:
- *         description: User registered successfully
- *       400:
- *         description: User already exists
- *       500:
- *         description: Internal server error
- */
-
-/**
- * @swagger
- * /auth/login:
+ * /:
  *   post:
  *     summary: Login with email and password
  *     tags: [Auth]
@@ -54,9 +29,7 @@ router.post("/verifyToken", AuthController.verifyToken);
  *           schema:
  *             type: object
  *             properties:
- *               email:
- *                 type: string
- *               password:
+ *               email(sub email/phone):
  *                 type: string
  *     responses:
  *       200:
@@ -88,7 +61,7 @@ router.post("/verifyToken", AuthController.verifyToken);
 /**
  * @swagger
  * /auth/refreshToken:
- *   post:
+ *   get:
  *     summary: Refresh authentication token
  *     tags: [Auth]
  *     security:
@@ -105,7 +78,7 @@ router.post("/verifyToken", AuthController.verifyToken);
 /**
  * @swagger
  * /auth/verifyToken:
- *   post:
+ *   get:
  *     summary: Verify authentication token
  *     tags: [Auth]
  *     security:
@@ -125,5 +98,3 @@ router.post("/verifyToken", AuthController.verifyToken);
  *     in: cookie
  *     name: accessToken
  */
-
-module.exports = router;

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const chatRoomSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -6,6 +6,4 @@ const chatRoomSchema = new mongoose.Schema({
   messages: [{ type: mongoose.Schema.Types.ObjectId, ref: "ChatMessage" }],
 });
 
-const ChatRoom = mongoose.model("ChatRoom", chatRoomSchema);
-
-module.exports = ChatRoom;
+export const ChatRoom = mongoose.model("ChatRoom", chatRoomSchema);

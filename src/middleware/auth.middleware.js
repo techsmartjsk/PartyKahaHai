@@ -1,8 +1,9 @@
-const jwt = require("jsonwebtoken");
-const User = require("../models/user.model");
+import jwt from "jsonwebtoken"
+import { User } from "../models/user.model.js";
+
 const secretKey = process.env.JWT_SECRET_KEY;
 
-const authMiddleware = async (req, res, next) => {
+export const authMiddleware = async (req, res, next) => {
   try {
     const authorizationHeader = req.headers.authorization;
     if (!authorizationHeader) {
@@ -26,5 +27,3 @@ const authMiddleware = async (req, res, next) => {
     res.status(401).send({ error: "Unauthorised" });
   }
 };
-
-module.exports = authMiddleware;

@@ -1,6 +1,6 @@
-const Party = require("../models/party.model");
+import { Party } from "../models/party.model";
 
-const createParty = async (req, res) => {
+async function createParty(req, res) {
   try {
     const { name, partyTime, partyDate, numberOfAttendees } = req.body;
     const host = req.user;
@@ -14,36 +14,31 @@ const createParty = async (req, res) => {
     });
 
     await newParty.save();
-
-    res
-      .status(201)
-      .json({ message: "Party created successfully", party: newParty });
+    res.status(201).json({ message: "Party created successfully", party: newParty });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: "Internal server error", error });
   }
-};
+}
 
-const getPartiesOfUser = async (req, res) => {
+async function getPartiesOfUser(req, res) {
   try {
-    const parties = await Party.find({
-      host: req.user,
-    });
+    const parties = await Party.find({ host: req.user });
     res.status(200).json(parties);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
-};
+}
 
-const getParties = async (req, res) => {
+async function getParties(req, res) {
   try {
     const parties = await Party.find();
     res.status(200).json(parties);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
-};
+}
 
-const getPartyById = async (req, res) => {
+async function getPartyById(req, res) {
   try {
     const party = await Party.findById(req.params.id);
     if (!party) {
@@ -53,9 +48,9 @@ const getPartyById = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
-};
+}
 
-const updateParty = async (req, res) => {
+async function updateParty(req, res) {
   try {
     const {
       name,
@@ -84,7 +79,7 @@ const updateParty = async (req, res) => {
         joiningFee,
         companyDesignation,
       },
-      { new: true },
+      { new: true }
     );
 
     if (!party) {
@@ -95,9 +90,9 @@ const updateParty = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
-};
+}
 
-const deleteParty = async (req, res) => {
+async function deleteParty(req, res) {
   try {
     const party = await Party.findByIdAndDelete(req.params.id);
     if (!party) {
@@ -107,12 +102,12 @@ const deleteParty = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
-};
+}
 
-module.exports = {
+export default {
   createParty,
-  getParties,
   getPartiesOfUser,
+  getParties,
   getPartyById,
   updateParty,
   deleteParty,

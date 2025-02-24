@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
+import PartyController from "../controllers/party.controller";
+import { authMiddleware } from "../middleware/auth.middleware";
+
 const router = express.Router();
-const PartyController = require("../controllers/party.controller");
-const authMiddleware = require("../middleware/auth.middleware");
 
 router.get("/all/", authMiddleware, PartyController.getParties);
 router.get("/", authMiddleware, PartyController.getPartiesOfUser);
@@ -9,6 +10,8 @@ router.post("/", authMiddleware, PartyController.createParty);
 router.get("/:id", authMiddleware, PartyController.getPartyById);
 router.put("/:id", authMiddleware, PartyController.updateParty);
 router.delete("/:id", authMiddleware, PartyController.deleteParty);
+
+export const PartyRouter = { router };
 
 /**
  * @swagger
@@ -176,5 +179,3 @@ router.delete("/:id", authMiddleware, PartyController.deleteParty);
  *         - numberOfAttendees
  *         - host
  */
-
-module.exports = router;

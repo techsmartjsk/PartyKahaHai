@@ -1,21 +1,17 @@
-const Request = require("../models/request.model");
-const Party = require("../models/party.model");
+import { Party } from "../models/party.model";
+import { Request } from "../models/request.model";
 
-const createRequest = async (req, res) => {
+async function createRequest(req, res) {
   try {
     const user = req.user;
     const { partyId } = req.body;
 
     const party = await Party.findById(partyId);
-
     if (!user || !party) {
       return res.status(404).json({ message: "User or party not found" });
     }
 
-    const existingRequest = await Request.findOne({
-      user: user,
-      party: partyId,
-    });
+    const existingRequest = await Request.findOne({ user: user, party: partyId });
     if (existingRequest) {
       return res.status(400).json({ message: "Request already exists" });
     }
@@ -25,11 +21,11 @@ const createRequest = async (req, res) => {
 
     res.status(201).json({ message: "Request created successfully", request });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-};
+}
 
-const acceptRequest = async (req, res) => {
+async function acceptRequest(req, res) {
   try {
     const { requestId } = req.body;
 
@@ -43,11 +39,11 @@ const acceptRequest = async (req, res) => {
 
     res.status(200).json({ message: "Request accepted successfully", request });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-};
+}
 
-const rejectRequest = async (req, res) => {
+async function rejectRequest(req, res) {
   try {
     const { requestId } = req.body;
 
@@ -61,11 +57,11 @@ const rejectRequest = async (req, res) => {
 
     res.status(200).json({ message: "Request rejected successfully", request });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-};
+}
 
-module.exports = {
+export default {
   createRequest,
   acceptRequest,
   rejectRequest,

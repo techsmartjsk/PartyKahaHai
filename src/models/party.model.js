@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const partySchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -22,6 +22,4 @@ const partySchema = new mongoose.Schema({
   requests: [{ type: mongoose.Schema.Types.ObjectId, ref: "Request" }],
 });
 
-const Party = mongoose.model("Party", partySchema);
-
-module.exports = Party;
+export const Party = mongoose.model("Party", partySchema);

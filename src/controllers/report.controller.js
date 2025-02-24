@@ -1,6 +1,6 @@
-const Report = require("../models/report.model");
+import { Report } from "../models/report.model";
 
-const createReport = async (req, res) => {
+async function createReport(req, res) {
   try {
     const {
       reportedUser,
@@ -19,27 +19,23 @@ const createReport = async (req, res) => {
     });
 
     await report.save();
-
     res.status(201).json({ message: "Report created successfully", report });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-};
+}
 
-const getReports = async (req, res) => {
+async function getReports(req, res) {
   try {
     const reports = await Report.find().populate("reportedUser reportedBy");
     res.status(200).json({ reports });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-};
+}
 
-const updateReportStatus = async (req, res) => {
+
+async function updateReportStatus(req, res) {
   try {
     const { id } = req.params;
     const { status, action } = req.body;
@@ -55,13 +51,11 @@ const updateReportStatus = async (req, res) => {
 
     res.status(200).json({ message: "Report updated successfully", report });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-};
+}
 
-const deleteReport = async (req, res) => {
+async function deleteReport(req, res) {
   try {
     const { id } = req.params;
 
@@ -70,15 +64,13 @@ const deleteReport = async (req, res) => {
       return res.status(404).json({ message: "Report not found" });
     }
 
-    res.status(200).json({ message: "Report updated successfully", report });
+    res.status(200).json({ message: "Report deleted successfully", report });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-};
+}
 
-module.exports = {
+export default {
   createReport,
   getReports,
   updateReportStatus,

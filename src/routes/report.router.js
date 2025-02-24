@@ -1,12 +1,15 @@
-const express = require("express");
+import express from "express";
+import { authMiddleware } from "../middleware/auth.middleware";
+import ReportController from "../controllers/report.controller";
+
 const router = express.Router();
-const ReportController = require("../controllers/report.controller");
-const authMiddleware = require("../middleware/auth.middleware");
 
 router.post("/", authMiddleware, ReportController.createReport);
 router.get("/all", authMiddleware, ReportController.getReports);
 router.put("/:id", authMiddleware, ReportController.updateReportStatus);
 router.delete("/:id", authMiddleware, ReportController.deleteReport);
+
+export const ReportRouter = { router }
 
 /**
  * @swagger
@@ -175,5 +178,3 @@ router.delete("/:id", authMiddleware, ReportController.deleteReport);
  *       500:
  *         description: Internal server error
  */
-
-module.exports = router;
