@@ -1,5 +1,6 @@
-const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUI from "swagger-ui-express";
+import fs from "fs";
 
 const options = {
   definition: {
@@ -25,15 +26,23 @@ const options = {
     ],
   },
   // looks for configuration in specified directories
-  apis: ["./routes/*.js"],
+  apis: ["./src/routes/*.js"],
 };
-const swaggerSpec = swaggerJsdoc(options);
+
+const swaggerSpec = swaggerJSDoc(options);
+
+fs.writeFileSync(
+  "./swagger.json",
+  JSON.stringify(swaggerSpec, null, 2),
+  "utf-8"
+);
+
 function swaggerDocs(app, port) {
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
   app.get("/docs.json", (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.send(swaggerSpec);
   });
 }
 
-module.exports = swaggerDocs;
+export default swaggerDocs;

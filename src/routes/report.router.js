@@ -1,6 +1,6 @@
 import express from "express";
-import { authMiddleware } from "../middleware/auth.middleware";
-import ReportController from "../controllers/report.controller";
+import { authMiddleware } from "../middleware/auth.middleware.js";
+import ReportController from "../controllers/report.controller.js";
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ router.get("/all", authMiddleware, ReportController.getReports);
 router.put("/:id", authMiddleware, ReportController.updateReportStatus);
 router.delete("/:id", authMiddleware, ReportController.deleteReport);
 
-export const ReportRouter = { router }
+export default router
 
 /**
  * @swagger

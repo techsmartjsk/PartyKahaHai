@@ -1,6 +1,6 @@
 import express from "express";
-import PartyController from "../controllers/party.controller";
-import { authMiddleware } from "../middleware/auth.middleware";
+import PartyController from "../controllers/party.controller.js";
+import { authMiddleware } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.get("/:id", authMiddleware, PartyController.getPartyById);
 router.put("/:id", authMiddleware, PartyController.updateParty);
 router.delete("/:id", authMiddleware, PartyController.deleteParty);
 
-export const PartyRouter = { router };
+export default router;
 
 /**
  * @swagger

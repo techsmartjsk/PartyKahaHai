@@ -1,5 +1,5 @@
 import express from "express";
-import AuthController from "../controllers/auth.controller"
+import AuthController from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ router.post("/authenticate/verify", AuthController.verifyCode);
 router.get("/refreshToken", AuthController.refreshToken);
 router.get("/verifyToken", AuthController.verifyToken);
 
-export const AuthRouter = { router}
+export default router;
 
 /**
  * @swagger
@@ -16,11 +16,12 @@ export const AuthRouter = { router}
  *   name: Auth
  *   description: Authentication APIs
  */
+
 /**
  * @swagger
- * /:
+ * /authenticate:
  *   post:
- *     summary: Login with email and password
+ *     summary: Request an OTP for authentication
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -29,8 +30,53 @@ export const AuthRouter = { router}
  *           schema:
  *             type: object
  *             properties:
- *               email(sub email/phone):
+ *               sub:
  *                 type: string
+ *                 description: Email or phone number of the user
+ *                 example: user@example.com
+ *               type:
+ *                 type: string
+ *                 enum: [email, phone]
+ *                 description: OTP delivery method
+ *                 example: email
+ *     responses:
+ *       201:
+ *         description: OTP sent successfully
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /authenticate/verify:
+ *   post:
+ *     summary: Verify the OTP and authenticate the user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sub:
+ *                 type: string
+ *                 description: Email or phone number of the user
+ *                 example: user@example.com
+ *               pinId:
+ *                 type: string
+ *                 description: Unique ID of the OTP sent
+ *                 example: "1234567890"
+ *               pin:
+ *                 type: string
+ *                 description: OTP entered by the user
+ *                 example: "1234"
+ *               role:
+ *                 type: string
+ *                 description: Role of the user
+ *                 example: "user"
  *     responses:
  *       200:
  *         description: Login successful
@@ -53,14 +99,14 @@ export const AuthRouter = { router}
  *                   type: string
  *                   example: Login successful
  *       401:
- *         description: Invalid credentials
+ *         description: Invalid verification code
  *       500:
  *         description: Internal server error
  */
 
 /**
  * @swagger
- * /auth/refreshToken:
+ * /refreshToken:
  *   get:
  *     summary: Refresh authentication token
  *     tags: [Auth]
@@ -77,7 +123,7 @@ export const AuthRouter = { router}
 
 /**
  * @swagger
- * /auth/verifyToken:
+ * /verifyToken:
  *   get:
  *     summary: Verify authentication token
  *     tags: [Auth]
@@ -85,9 +131,11 @@ export const AuthRouter = { router}
  *       - cookieAuth: []
  *     responses:
  *       200:
- *         description: Token is valid
+ *         description: Authentication Successful
  *       401:
  *         description: Invalid access token
+ *       500:
+ *         description: Internal server error
  */
 
 /**

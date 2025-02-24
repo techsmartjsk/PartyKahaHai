@@ -3,11 +3,11 @@ import swaggerDocs from "./swagger.js";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { PartyRouter } from "./routes/party.router.js";
-import { RequestRouter } from "./routes/request.router.js";
-import { AuthRouter } from "./routes/auth.router.js";
-import { ReportRouter } from "./routes/report.router.js";
+import PartyRouter from "./routes/party.router.js";
+import RequestRouter from "./routes/request.router.js";
+import AuthRouter from "./routes/auth.router.js";
 import dotenv from "dotenv";
+import ReportRouter from "./routes/report.router.js"
 
 dotenv.config();
 

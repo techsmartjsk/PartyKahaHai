@@ -1,6 +1,6 @@
 import express from "express";
-import RequestsController from "../controllers/request.controller";
-import { authMiddleware } from "../middleware/auth.middleware";
+import RequestsController from "../controllers/request.controller.js";
+import { authMiddleware } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ router.post("/", authMiddleware, RequestsController.createRequest);
 router.post("/accept", authMiddleware, RequestsController.acceptRequest);
 router.post("/reject", authMiddleware, RequestsController.rejectRequest);
 
-export const RequestRouter = { router }
+export default router;
 
 /**
  * @swagger

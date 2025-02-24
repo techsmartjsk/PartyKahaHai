@@ -1,5 +1,5 @@
-import { Party } from "../models/party.model";
-import { Request } from "../models/request.model";
+import { Party } from "../models/party.model.js";
+import { Request } from "../models/request.model.js";
 
 async function createRequest(req, res) {
   try {

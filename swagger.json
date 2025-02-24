@@ -1,0 +1,900 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Party Kaha Hai APIs",
+    "description": "API endpoints for a Party Kaha Hai APIs",
+    "contact": {
+      "name": "Jaskirat Singh",
+      "email": "jaskirat@futurestic.co.in"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001/",
+      "description": "Local server"
+    },
+    {
+      "url": "https://party.netzeroaccelerator.co.uk",
+      "description": "Live server"
+    }
+  ],
+  "paths": {
+    "/authenticate": {
+      "post": {
+        "summary": "Request an OTP for authentication",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sub": {
+                    "type": "string",
+                    "description": "Email or phone number of the user",
+                    "example": "user@example.com"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "email",
+                      "phone"
+                    ],
+                    "description": "OTP delivery method",
+                    "example": "email"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OTP sent successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/authenticate/verify": {
+      "post": {
+        "summary": "Verify the OTP and authenticate the user",
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sub": {
+                    "type": "string",
+                    "description": "Email or phone number of the user",
+                    "example": "user@example.com"
+                  },
+                  "pinId": {
+                    "type": "string",
+                    "description": "Unique ID of the OTP sent",
+                    "example": "1234567890"
+                  },
+                  "pin": {
+                    "type": "string",
+                    "description": "OTP entered by the user",
+                    "example": "1234"
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "Role of the user",
+                    "example": "user"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "headers": {
+              "Set-Cookie": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "JWT access token and refresh token",
+                    "example": "accessToken=your_access_token; Path=/; HttpOnly; SameSite=None\nrefreshToken=your_refresh_token; Path=/; HttpOnly; SameSite=None\n"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Login successful"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid verification code"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/refreshToken": {
+      "get": {
+        "summary": "Refresh authentication token",
+        "tags": [
+          "Auth"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Access token refreshed successfully"
+          },
+          "401": {
+            "description": "Refresh token not found or invalid"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/verifyToken": {
+      "get": {
+        "summary": "Verify authentication token",
+        "tags": [
+          "Auth"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authentication Successful"
+          },
+          "401": {
+            "description": "Invalid access token"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "accessToken"
+      }
+    },
+    "/party/all": {
+      "get": {
+        "summary": "Get all parties",
+        "tags": [
+          "Parties"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all parties"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/party": {
+      "get": {
+        "summary": "Get parties of the current user",
+        "tags": [
+          "Parties"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return parties of the current user"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new party",
+        "tags": [
+          "Parties"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Party"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Party created successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/party/{id}": {
+      "get": {
+        "summary": "Get party by ID",
+        "tags": [
+          "Parties"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the party",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return party by ID"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Party not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update party by ID",
+        "tags": [
+          "Parties"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the party",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Party"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Party updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Party not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete party by ID",
+        "tags": [
+          "Parties"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the party",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Party deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Party not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/report/": {
+      "post": {
+        "summary": "Create a new report",
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Report created successfully"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/report/all": {
+      "get": {
+        "summary": "Get all reports",
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of reports",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Report"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/report/{id}": {
+      "put": {
+        "summary": "Update the status of a report",
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the report to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "pending",
+                      "resolved"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Report status updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a report",
+        "tags": [
+          "Reports"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID of the report to delete",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Report deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/request/": {
+      "post": {
+        "summary": "Create a new request",
+        "tags": [
+          "Requests"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "partyId": {
+                    "type": "string",
+                    "description": "ID of the party to request access to"
+                  }
+                },
+                "required": [
+                  "partyId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Request created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "request": {
+                      "$ref": "#/components/schemas/Request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request already exists"
+          },
+          "404": {
+            "description": "User or party not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/request/accept": {
+      "post": {
+        "summary": "Accept a request",
+        "tags": [
+          "Requests"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "requestId": {
+                    "type": "string",
+                    "description": "ID of the request to accept"
+                  }
+                },
+                "required": [
+                  "requestId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request accepted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "request": {
+                      "$ref": "#/components/schemas/Request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Request not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/request/reject": {
+      "post": {
+        "summary": "Reject a request",
+        "tags": [
+          "Requests"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "requestId": {
+                    "type": "string",
+                    "description": "ID of the request to reject"
+                  }
+                },
+                "required": [
+                  "requestId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request rejected successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "request": {
+                      "$ref": "#/components/schemas/Request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Request not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Party": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "partyDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "partyTime": {
+            "type": "string"
+          },
+          "numberOfAttendees": {
+            "type": "integer"
+          },
+          "ageGroup": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "community": {
+            "type": "string"
+          },
+          "locality": {
+            "type": "string"
+          },
+          "venue": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "joiningFee": {
+            "type": "integer"
+          },
+          "companyDesignation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "partyDate",
+          "partyTime",
+          "numberOfAttendees",
+          "host"
+        ]
+      },
+      "ReportInput": {
+        "type": "object",
+        "properties": {
+          "reportedUser": {
+            "type": "string"
+          },
+          "reportedBy": {
+            "type": "string"
+          },
+          "reportedReason": {
+            "type": "string"
+          },
+          "detailedExplanation": {
+            "type": "string"
+          },
+          "additionalInfo": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "reportedUser",
+          "reportedBy",
+          "reportedReason",
+          "detailedExplanation"
+        ]
+      },
+      "Report": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "reportedUser": {
+            "type": "string"
+          },
+          "reportedBy": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "reportedReason": {
+            "type": "string"
+          },
+          "detailedExplanation": {
+            "type": "string"
+          },
+          "additionalInfo": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "action": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "reportedUser",
+          "reportedBy",
+          "status",
+          "reportedReason",
+          "detailedExplanation",
+          "additionalInfo",
+          "action"
+        ]
+      },
+      "Request": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string",
+            "description": "ID of the user making the request"
+          },
+          "partyId": {
+            "type": "string",
+            "description": "ID of the party for which the request is made"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "accepted",
+              "rejected"
+            ],
+            "description": "Status of the request"
+          }
+        },
+        "required": [
+          "user",
+          "partyId"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication APIs"
+    },
+    {
+      "name": "Reports",
+      "description": "API endpoints for managing reports"
+    },
+    {
+      "name": "Requests",
+      "description": "API endpoints for managing party requests"
+    }
+  ]
+}
