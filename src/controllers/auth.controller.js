@@ -1,6 +1,9 @@
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const {
   INFOBIP_URL,
@@ -49,10 +52,6 @@ async function sendCode(req, res) {
       messageId: INFOBIP_MSG_ID,
       to: sub,
     };
-
-    if (type === "phone") {
-      otpBody["from"] = "Party Kaha Hai";
-    }
 
     try {
       const response = await axios.post(url, otpBody, { headers });

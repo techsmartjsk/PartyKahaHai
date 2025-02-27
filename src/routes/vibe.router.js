@@ -1,13 +1,14 @@
 import express from "express";
 import { vibeController } from "../controllers/vibe.controller.js";
+import { authMiddleware } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.get("/", vibeController.getVibes);
-router.get("/:id", vibeController.getVibeById);
-router.post("/", vibeController.createVibe);
-router.put("/:id", vibeController.updateVibe);
-router.delete("/:id", vibeController.deleteVibe);
+router.get("/", authMiddleware, vibeController.getVibes);
+router.get("/:id", authMiddleware, vibeController.getVibeById);
+router.post("/", authMiddleware, vibeController.createVibe);
+router.put("/:id", authMiddleware, vibeController.updateVibe);
+router.delete("/:id", authMiddleware, vibeController.deleteVibe);
 
 export default router;
 
@@ -20,10 +21,22 @@ export default router;
 
 /**
  * @swagger
+ * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
+
+/**
+ * @swagger
  * /vibes:
  *   post:
  *     summary: Create a new vibe
  *     tags: [Vibes]
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -43,6 +56,8 @@ export default router;
  *     responses:
  *       201:
  *         description: Vibe created successfully
+ *       401:
+ *         description: Unauthorized
  *       500:
  *         description: Error creating vibe
  */
@@ -53,9 +68,13 @@ export default router;
  *   get:
  *     summary: Get all vibes
  *     tags: [Vibes]
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: List of vibes
+ *       401:
+ *         description: Unauthorized
  *       500:
  *         description: Error fetching vibes
  */
@@ -66,6 +85,8 @@ export default router;
  *   get:
  *     summary: Get a vibe by ID
  *     tags: [Vibes]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -75,6 +96,8 @@ export default router;
  *     responses:
  *       200:
  *         description: Vibe details
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: Vibe not found
  *       500:
@@ -87,6 +110,8 @@ export default router;
  *   put:
  *     summary: Update a vibe
  *     tags: [Vibes]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -110,6 +135,8 @@ export default router;
  *     responses:
  *       200:
  *         description: Vibe updated successfully
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: Vibe not found
  *       500:
@@ -122,6 +149,8 @@ export default router;
  *   delete:
  *     summary: Delete a vibe
  *     tags: [Vibes]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -131,6 +160,8 @@ export default router;
  *     responses:
  *       200:
  *         description: Vibe deleted successfully
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: Vibe not found
  *       500:
