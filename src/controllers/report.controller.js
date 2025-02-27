@@ -21,7 +21,9 @@ async function createReport(req, res) {
     await report.save();
     res.status(201).json({ message: "Report created successfully", report });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 }
 
@@ -30,10 +32,11 @@ async function getReports(req, res) {
     const reports = await Report.find().populate("reportedUser reportedBy");
     res.status(200).json({ reports });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 }
-
 
 async function updateReportStatus(req, res) {
   try {
@@ -51,7 +54,9 @@ async function updateReportStatus(req, res) {
 
     res.status(200).json({ message: "Report updated successfully", report });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 }
 
@@ -66,7 +71,9 @@ async function deleteReport(req, res) {
 
     res.status(200).json({ message: "Report deleted successfully", report });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 }
 

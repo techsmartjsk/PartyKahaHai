@@ -14,7 +14,9 @@ async function createParty(req, res) {
     });
 
     await newParty.save();
-    res.status(201).json({ message: "Party created successfully", party: newParty });
+    res
+      .status(201)
+      .json({ message: "Party created successfully", party: newParty });
   } catch (error) {
     res.status(500).json({ message: "Internal server error", error });
   }
@@ -79,7 +81,7 @@ async function updateParty(req, res) {
         joiningFee,
         companyDesignation,
       },
-      { new: true }
+      { new: true },
     );
 
     if (!party) {

@@ -2,7 +2,13 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
 
-const { INFOBIP_URL, INFOBIP_APP_ID, INFOBIP_MSG_ID, INFOBIP_API_KEY, JWT_SECRET_KEY: secretKey } = process.env;
+const {
+  INFOBIP_URL,
+  INFOBIP_APP_ID,
+  INFOBIP_MSG_ID,
+  INFOBIP_API_KEY,
+  JWT_SECRET_KEY: secretKey,
+} = process.env;
 
 const headers = {
   Authorization: `App ${INFOBIP_API_KEY}`,

@@ -9,7 +9,7 @@ router.get("/all", authMiddleware, ReportController.getReports);
 router.put("/:id", authMiddleware, ReportController.updateReportStatus);
 router.delete("/:id", authMiddleware, ReportController.deleteReport);
 
-export default router
+export default router;
 
 /**
  * @swagger

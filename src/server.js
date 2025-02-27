@@ -7,7 +7,9 @@ import PartyRouter from "./routes/party.router.js";
 import RequestRouter from "./routes/request.router.js";
 import AuthRouter from "./routes/auth.router.js";
 import dotenv from "dotenv";
-import ReportRouter from "./routes/report.router.js"
+import ReportRouter from "./routes/report.router.js";
+import UserRouter from "./routes/user.router.js";
+import VibeRouter from "./routes/vibe.router.js"
 
 dotenv.config();
 
@@ -31,10 +33,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 
+app.use("/users", UserRouter);
 app.use("/auth", AuthRouter);
 app.use("/party", PartyRouter);
 app.use("/request", RequestRouter);
 app.use("/report", ReportRouter);
+app.use("/vibe", VibeRouter);
 
 app.options("*", cors(corsOptions));
 

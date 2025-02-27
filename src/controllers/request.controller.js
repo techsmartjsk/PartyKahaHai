@@ -11,7 +11,10 @@ async function createRequest(req, res) {
       return res.status(404).json({ message: "User or party not found" });
     }
 
-    const existingRequest = await Request.findOne({ user: user, party: partyId });
+    const existingRequest = await Request.findOne({
+      user: user,
+      party: partyId,
+    });
     if (existingRequest) {
       return res.status(400).json({ message: "Request already exists" });
     }
@@ -21,7 +24,9 @@ async function createRequest(req, res) {
 
     res.status(201).json({ message: "Request created successfully", request });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 }
 
@@ -39,7 +44,9 @@ async function acceptRequest(req, res) {
 
     res.status(200).json({ message: "Request accepted successfully", request });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 }
 
@@ -57,7 +64,9 @@ async function rejectRequest(req, res) {
 
     res.status(200).json({ message: "Request rejected successfully", request });
   } catch (error) {
-    res.status(500).json({ message: "Internal server error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 }
 

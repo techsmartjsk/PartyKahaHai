@@ -34,7 +34,7 @@ const swaggerSpec = swaggerJSDoc(options);
 fs.writeFileSync(
   "./swagger.json",
   JSON.stringify(swaggerSpec, null, 2),
-  "utf-8"
+  "utf-8",
 );
 
 function swaggerDocs(app, port) {
