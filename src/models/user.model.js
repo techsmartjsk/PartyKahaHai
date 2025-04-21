@@ -70,7 +70,6 @@ const userSchema = new mongoose.Schema({
   },
 
   role: { type: String, required: true },
-  chatRooms: [{ type: mongoose.Schema.Types.ObjectId, ref: "ChatRoom" }],
   hostedParties: [{ type: mongoose.Schema.Types.ObjectId, ref: "Party" }],
   attendedParties: [{ type: mongoose.Schema.Types.ObjectId, ref: "Party" }],
   requests: [{ type: mongoose.Schema.Types.ObjectId, ref: "Request" }]
